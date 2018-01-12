@@ -3,10 +3,10 @@ import RecoverZonaSul
 
 def recoverData():
     #recuperando comida prix
-    RecoverPrix.recoverFoodPrix()
-    RecoverPrix.recoverDrinksPrix()
+    #RecoverPrix.recoverFoodPrix()
+    #RecoverPrix.recoverDrinksPrix()
 
     #recuperando comida zona sul
     RecoverZonaSul.recoverFoodZonaSul()
-    RecoverZonaSul.recoverDrinksZonaSul()
+    #RecoverZonaSul.recoverDrinksZonaSul()
 

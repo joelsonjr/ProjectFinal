@@ -12,11 +12,11 @@ def recoverZonaSul(site):
     page = requests.get(site)
     soup = BeautifulSoup(page.content, 'html.parser')
     products = soup.find_all('div', class_="bloco_informacoes")
-    for product in products:
-        print (product.a.get('title'))
-        print(product.find('div', class_="prod_preco").find(class_="preco"))
-        print(product.find('div', class_="prod_preco").find(class_="peso"))
-        
+    print(products[0].find('div', class_='prod_preco_qtd_peso').find('div', class_='prod_preco').find('p', class_='preco').string.strip())
+    #for product in products:
+        #print (product.find('a')['title'])
+        #print(product.find('div', class_='prod_preco_qtd_peso').find('div', class_='prod_preco'))#.find('p', class_='preco').string.strip())
+        #print(product.find('div', class_='prod_preco_qtd_peso').find('div', class_='prod_preco').find('p', class_='peso').string.strip())
 
 #Recover Foods ZOna Sul
 def recoverFoodZonaSul():
