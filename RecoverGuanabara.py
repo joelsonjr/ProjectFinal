@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 #print (re_number.match(str))
 #print (re.findall(r'\d+\.\d*', str))
 
-def recoverZonaSul(site):
+def recoverGuanabara(site):
     page = requests.get(site)
     soup = BeautifulSoup(page.content, 'html.parser')
     products = soup.find_all('div', class_="bloco_informacoes")
@@ -19,7 +19,7 @@ def recoverZonaSul(site):
         print(product.find('div', class_='prod_preco_qtd_peso').find('div',  class_='prod_preco').find_all('p')[1].string)
     
 #Recover Foods ZOna Sul
-def recoverFoodZonaSul():
+def recoverFoodGuanabara():
     foodsSites = {"https://www.zonasul.com.br/SubSecao/Bovinas--124"}#,
                   #"https://www.zonasul.com.br/SubSecao/Aves--125",
                   #"https://www.zonasul.com.br/SubSecao/Exoticas--126",
@@ -30,7 +30,7 @@ def recoverFoodZonaSul():
 
 
 #Recover Drinks Zona Sul
-#def recoverDrinksZonaSul():
+#def recoverDrinksGuanabara():
  #   drinksSites = {"https://www.zonasul.com.br/SubSecao/Cachacas_e_Vodkas--29",
  #                  "https://www.zonasul.com.br/SubSecao/Cervejas--25",
   #                 "https://www.zonasul.com.br/SubSecao/Cervejas_Artesanais--269",
@@ -40,4 +40,4 @@ def recoverFoodZonaSul():
    # for drinksSite in drinksSites:
    #     recoverZonaSul(drinksSite)
 
-recoverFoodZonaSul()
+recoverFoodGuanabara()
