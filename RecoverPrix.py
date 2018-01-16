@@ -15,14 +15,19 @@ def recoverPrix(site):
     soup = BeautifulSoup(page.content, 'html.parser')
     
     products = soup.find_all('div', class_="price")
-    itens = np.array([(product.a.get('title'), product.get_text()) for product in products])
-    print (itens)
+    for product in products:
+        try:
+            print(product.a.get('title'))
+            print(re.findall(r'\d+\,?\d*', product.get_text()))
+            print(re.findall(r'\d+', product.a.get('title')))
+        except AttributeError as e:
+            print("ERROROROO ============================")
     
 #Recover Foods Prix
 def recoverFoodPrix():
-    foodsSites = {"https://www.superprix.com.br/carnes-e-pescados/bovinas",
-                  "https://www.superprix.com.br/carnes-e-pescados/aves",
-                  "https://www.superprix.com.br/carnes-e-pescados/suinas",
+    foodsSites = {#"https://www.superprix.com.br/carnes-e-pescados/bovinas",
+                  #"https://www.superprix.com.br/carnes-e-pescados/aves",
+                  #"https://www.superprix.com.br/carnes-e-pescados/suinas",
                   "https://www.superprix.com.br/carnes-e-pescados/linguicas"}
 
     for foodsSite in foodsSites:
@@ -41,3 +46,5 @@ def recoverDrinksPrix():
 
     for drinksSite in drinksSites:
         recoverPrix(drinksSite)
+        
+recoverFoodPrix()        

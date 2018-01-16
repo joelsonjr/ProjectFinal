@@ -3,7 +3,7 @@ import requests
 import numpy as np
 from bs4 import BeautifulSoup
 
-#re_number = re.compile(r"\d*\.?\d+")
+#re_price = re.compile(r"\d*\.?\d+")
 #str = "JOELSO  VIALLE 10.4kg"
 #print (re_number.match(str))
 #print (re.findall(r'\d+\.\d*', str))
@@ -12,18 +12,24 @@ def recoverZonaSul(site):
     page = requests.get(site)
     soup = BeautifulSoup(page.content, 'html.parser')
     products = soup.find_all('div', class_="bloco_informacoes")
-    
     for product in products:
-        print (product.find('a')['title'])
-        print(product.find('div', class_='prod_preco_qtd_peso').find('div',  class_='prod_preco').find_all('p')[0].string)
-        print(product.find('div', class_='prod_preco_qtd_peso').find('div',  class_='prod_preco').find_all('p')[1].string)
+        try:
+            title = product.find('a')['title']
+            price = product.find('div', class_="prod_preco_qtd_peso").find('div', class_="prod_preco").find('p', class_="preco").string.strip()
+            weight = product.find('div', class_="prod_preco_qtd_peso").find('div', class_="prod_preco").find('p', class_="peso").string.strip()
+            print(title)
+            print(re.findall(r'\d+\,?\d*', price))
+            print(re.findall(r'\d+', weight))
+        except AttributeError as e:
+            print("ERROROROO ============================")
+        
     
 #Recover Foods ZOna Sul
 def recoverFoodZonaSul():
-    foodsSites = {"https://www.zonasul.com.br/SubSecao/Bovinas--124"}#,
+    foodsSites = {#"https://www.zonasul.com.br/SubSecao/Bovinas--124",
                   #"https://www.zonasul.com.br/SubSecao/Aves--125",
                   #"https://www.zonasul.com.br/SubSecao/Exoticas--126",
-                  #"https://www.zonasul.com.br/SubSecao/Suinas--123"}
+                  "https://www.zonasul.com.br/SubSecao/Suinas--123"}
 
     for foodsSite in foodsSites:
         recoverZonaSul(foodsSite)
