@@ -11,17 +11,20 @@ from bs4 import BeautifulSoup
 def recoverZonaSul(site):
     page = requests.get(site)
     soup = BeautifulSoup(page.content, 'html.parser')
-    products = soup.find_all('div', class_="bloco_informacoes")
-    for product in products:
-        try:
-            title = product.find('a')['title']
-            price = product.find('div', class_="prod_preco_qtd_peso").find('div', class_="prod_preco").find('p', class_="preco").string.strip()
-            weight = product.find('div', class_="prod_preco_qtd_peso").find('div', class_="prod_preco").find('p', class_="peso").string.strip()
-            print(title)
-            print(re.findall(r'\d+\,?\d*', price))
-            print(re.findall(r'\d+', weight))
-        except AttributeError as e:
-            print("ERROROROO ============================")
+    pages = soup.find('div', class_="paginas").find('span', id="ctl00_cphMasterPage1_dpgPromocaoTopo").find_all('span', attrs={'class'})
+    for page in pages:
+        print(page)
+    #products = soup.find_all('div', class_="bloco_informacoes")
+    #for product in products:
+        #try:
+            #title = product.find('a')['title']
+            #price = product.find('div', class_="prod_preco_qtd_peso").find('div', class_="prod_preco").find('p', class_="preco").string.strip()
+            #weight = product.find('div', class_="prod_preco_qtd_peso").find('div', class_="prod_preco").find('p', class_="peso").string.strip()
+            #print(title)
+            #print(re.findall(r'\d+\,?\d*', price))
+            #print(re.findall(r'\d+', weight))
+        #except AttributeError as e:
+            #print("ERROROROO ============================")
         
     
 #Recover Foods ZOna Sul
