@@ -5,12 +5,12 @@ conn = sqlite3.connect('products.db')
 cursor = conn.cursor()
 
 # criando a tabela (schema)
-#cursor.execute("""
-#CREATE TABLE IF NOT EXISTS Empresa (
-#        id_empresa INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-#        nome TEXT NOT NULL
-#        );
-#""")
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS Empresa (
+        id_empresa INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+        nome TEXT NOT NULL
+        );
+""")
 
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS Localizacao_Empresa (
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS Localizacao_Empresa (
         bairro TEXT NOT NULL,
         cidade TEXT NOT NULL,
         telefone VARCHAR(9) NOT NULL,
-        FOREIGN KEY(id_empresa) REFERENCES artist(Empresa)
+        FOREIGN KEY(id_empresa) REFERENCES Empresa(id_empresa)
         );
 """)
 
@@ -33,11 +33,19 @@ CREATE TABLE IF NOT EXISTS Produtos (
         nome TEXT NOT NULL,
         categoria TEXT NOT NULL,
         preco REAL NOT NULL,
-        peso REAL NOT NULL,
-        FOREIGN KEY(id_empresa) REFERENCES artist(Empresa)
+        peso REAL,
+        FOREIGN KEY(id_empresa) REFERENCES Empresa(id_empresa)
         );
 """)
 
-print('Tabela criada com sucesso.')
+cursor.execute("insert into Empresa(nome) values ('Zona Sul')")
+cursor.execute("insert into Empresa(nome) values ('Prix')")
+cursor.execute("insert into Empresa(nome) values ('Guanabara')")
 
+# gravando no bd
+conn.commit()
+
+print('Dados inseridos com sucesso.')
+#insert int Empresa values ("Prix");
+#insert int Empresa values ("Guanabara");
 conn.close()
