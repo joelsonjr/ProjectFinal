@@ -2,16 +2,18 @@ import re
 import requests
 import numpy as np
 from bs4 import BeautifulSoup
+import sqlite3
 
-#re_price = re.compile(r"\d*\.?\d+")
-#str = "JOELSO  VIALLE 10.4kg"
-#print (re_number.match(str))
-#print (re.findall(r'\d+\.\d*', str))
+conn = sqlite3.connect('products.db')
+
+cursor = conn.cursor()
 
 def recoverZonaSulFood(site):
+    cursor.execute("""
+                   delete from Produtos where id_empresa = 1;
+                   """)
     page = requests.get(site)
     soup = BeautifulSoup(page.content, 'html.parser')
-    print("================= SITE ===========================: " + site)
     products = soup.find_all('div', class_="bloco_informacoes")
     for product in products:
         try:
@@ -21,26 +23,37 @@ def recoverZonaSulFood(site):
             print(title)
             print(re.findall(r'\d+\,?\d*', price))
             print(re.findall(r'\d+', weight))
+            #cursor.execute("""
+            #               INSERT INTO Produtos(id_empresa, nome, categoria, preco, peso)
+            #               VALUES (1,?,'comida',?,?)
+            #               """, (title, price, weight))
         except AttributeError as e:
             print("ERROROROO ============================")
             
 
 def recoverZonaSulDrink(site):
+    cursor.execute("""
+                   delete from Produtos where id_empresa = 1;
+                   """)
     page = requests.get(site)
     soup = BeautifulSoup(page.content, 'html.parser')
-    print("================= SITE ===========================: " + site)
     products = soup.find_all('div', class_="bloco_informacoes")
     for product in products:
         try:
             title = product.find('a')['title']
-            price = product.find('div', class_="prod_preco_qtd").find('div', class_="prod_preco").find('p', class_="preco").string.strip()
-            print(title)
-            print(re.findall(r'\d+\,?\d*', price))
+            price = re.findall(r'\d+\,?\d*',product.find('div', class_="prod_preco_qtd").find('div', class_="prod_preco").find('p', class_="preco").string.strip())
+            w = re.findall(r'\d+', title)
+            print(w[len(w) - 1])
+            #weight = w[len(w) - 1]
+            #print(weight)
+            #cursor.execute("""
+            #               INSERT INTO Produtos(id_empresa, nome, categoria, preco, peso)
+            #               VALUES (1,?,'bebida',?,?)
+            #               """, (title, price, weight[len(weight) - 1]))
         except AttributeError as e:
             print("ERROROROO ============================")        
     
-#Recover Foods ZOna Sul
-#https://www.zonasul.com.br/SubSecao/Bovinas--124?Pagina=2
+#Recover Foods Zona Sul
 def recoverFoodZonaSul():
     foodsSites = {"https://www.zonasul.com.br/SubSecao/Bovinas--124"}#,
                   #"https://www.zonasul.com.br/SubSecao/Aves--125",
@@ -72,6 +85,12 @@ def recoverDrinksZonaSul():
         pages = soup.find('div', class_="paginas").find('span', id="ctl00_cphMasterPage1_dpgPromocaoTopo").find_all('a', class_='num')
         for page in pages:
             p = drinksSite + "?Pagina=" + page.get_text()
-            recoverZonaSul(p)
+            recoverZonaSulDrink(p)
 
+#recoverFoodZonaSul()
 recoverDrinksZonaSul()
+
+conn.commit()
+
+print('Dados inseridos com sucesso.')
+conn.close()
