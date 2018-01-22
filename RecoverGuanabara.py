@@ -2,6 +2,11 @@ import re
 import requests
 import numpy as np
 from bs4 import BeautifulSoup
+import sqlite3
+
+conn = sqlite3.connect('products.db')
+
+cursor = conn.cursor()
 
 def recoverGuanabara(site):
     page = requests.get(site)
