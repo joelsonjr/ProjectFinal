@@ -38,6 +38,12 @@ CREATE TABLE IF NOT EXISTS Produtos (
         );
 """)
 
+cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (4, 'Av. Quintino Bocaiúva', 127, '24360-022', 'São Francisco', 'Niterói', '(21) 2611-7700')")
+cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (4, 'Av. Rui Barbosa', 325, '24360-440', 'São Francisco', 'Niterói', '(21) 2611-8079')")
+cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (4, 'Estrada Francisco da Cruz Nunes', 1601, '24320-330', 'Itaipu', 'Niterói', '(21) 3254-5200')")
+cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (4, 'Av. Nossa Sra. de Copacabana', 719, '22020-001', 'Copacabana', 'Rio de Janeiro', '(21) 3269-9824')")
+
+
 #cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (1, 'Av. das Américas', 3665, '22361-003', 'Barra', 'Rio de Janeiro', '(21) 3325-1177')")
 #cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (1, 'Rua Bambina', 36, '22510-050', 'Botafogo', 'Rio de Janeiro', '(21) 2246-3828')")
 #cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (1, 'Rua da Alfândega' , 33, '20070-000', 'Centro', 'Rio de Janeiro', '(21) 2263-9553')")
@@ -57,7 +63,8 @@ CREATE TABLE IF NOT EXISTS Produtos (
 #cursor.execute("insert into Empresa(nome) values ('Zona Sul')")
 #cursor.execute("insert into Empresa(nome) values ('Prix')")
 #cursor.execute("insert into Empresa(nome) values ('Guanabara')")
-
+#cursor.execute("insert into Empresa(nome) values ('Diamante')")
+'''
 cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (2, 'Rua 24 de Maio', 432, '20950-085', 'Riachuelo', 'Rio de Janeiro', '(21) 2241-4436')")
 cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (2, 'Rua Conde de Bonfim', 536, '20520-055', 'Tijuca', 'Rio de Janeiro', '(21) 2268-3977')")
 cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (2, 'Rua Gavião Peixoto', 123, '24230-101', 'NIterói', 'Rio de Janeiro', '(21) 2610-8890')")
@@ -70,8 +77,6 @@ cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, ce
 cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (2, 'Av. Nossa Senhora de Copacabana', 673, '22050-001', 'Copacabana', 'Rio de Janeiro', '(21) 2547-0613')")
 cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (2, 'Rua Visconde de Pirajá', 270, '22410-000', 'Ipanema', 'Rio de Janeiro', '(21) 2523-0332')")
 cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (2, 'Rua Bruno Giorgi', 114, '22775-054', 'Barra da Tijuca', 'Rio de Janeiro', '(21) 2578-0032')")
-
-'''
 
 cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (3, 'Av. Ministro Ari Franco', 80, '21862-005', 'Bangu', 'Rio de Janeiro', '(21) 2401-9970')")
 cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (3, 'Rua Rio da Prata', 1370, '21820-091', 'Bangu', 'Rio de Janeiro', '(21) 3337-2498')")

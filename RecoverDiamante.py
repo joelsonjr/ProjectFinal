@@ -16,24 +16,20 @@ def recoverDiamante(site):
     soup = BeautifulSoup(page.content, 'html.parser')
     products = soup.find_all('div', class_="produto")
     for product in products:
-        #print(product)
-        product.find('div', class_="box-produtos-nome nomeProduto")
-        product.find('div', class_="box-produtos-de valorDesconto")
-        #try:
-            #div class="box-produtos-nome nomeProduto"
-            #title = product.a.get('title')
-            #price = re.findall(r'\d+\,?\d*', product.get_text())
-            #weight = re.findall(r'\d+', product.a.get('title'))
-            #print(title)
-            #print(price)
-            #print(weight)
+        try:
+            title = product.find('form', class_='itemGroup box').find('div', class_='box-produtos-nome nomeProduto').get_text()
+            price = product.find('form', class_='itemGroup box').find('div', class_='box-produtos-preco valor azul').find('span').get_text()
+            weight = re.findall(r'(\d+g|\d+kg|\d+\,?\d*kg|\d+ml|\d+L)', product.find('form', class_='itemGroup box').find('div', class_='box-produtos-nome nomeProduto').get_text())
+            print(title)
+            print(price)
+            print(weight)
             #cursor.execute("""
             #               INSERT INTO Produtos(id_empresa, nome, categoria, preco, peso)
-            #               VALUES (1,?,'comida',?,?)
+            #               VALUES (4,?,'comida',?,?)
             #               """, (title, price, weight))
-        #except AttributeError as e:
-            #print("ERROROROO ============================")
-    
+        except AttributeError as e:
+            print("ERROROROO ============================")
+        
 #Recover Foods Diamante
 def recoverFoodDiamente():
     foodsSites = {"https://www.mercadodiamante.com.br/categoria/carnes-carnes-bovinas/53"}#,
@@ -55,5 +51,5 @@ def recoverDrinksDiamante():
     for drinksSite in drinksSites:
         recoverDiamante(drinksSite)
         
-recoverFoodDiamente() 
-#recoverDrinksDiamante() 
+#recoverFoodDiamente() 
+recoverDrinksDiamante() 

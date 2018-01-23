@@ -25,7 +25,7 @@ def recoverPrix(site):
             print(weight)
             #cursor.execute("""
             #               INSERT INTO Produtos(id_empresa, nome, categoria, preco, peso)
-            #               VALUES (1,?,'comida',?,?)
+            #               VALUES (2,?,'comida',?,?)
             #               """, (title, price, weight))
         except AttributeError as e:
             print("ERROROROO ============================")
