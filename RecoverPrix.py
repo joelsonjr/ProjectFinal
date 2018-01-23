@@ -20,10 +20,13 @@ def recoverPrix(site):
             title = product.a.get('title')
             price = re.findall(r'\d+\,?\d*', product.get_text())
             weight = re.findall(r'\d+', product.a.get('title'))
-            cursor.execute("""
-                           INSERT INTO Produtos(id_empresa, nome, categoria, preco, peso)
-                           VALUES (1,?,'comida',?,?)
-                           """, (title, price, weight))
+            print(title)
+            print(price)
+            print(weight)
+            #cursor.execute("""
+            #               INSERT INTO Produtos(id_empresa, nome, categoria, preco, peso)
+            #               VALUES (1,?,'comida',?,?)
+            #               """, (title, price, weight))
         except AttributeError as e:
             print("ERROROROO ============================")
     
@@ -51,4 +54,5 @@ def recoverDrinksPrix():
     for drinksSite in drinksSites:
         recoverPrix(drinksSite)
         
-recoverFoodPrix()        
+#recoverFoodPrix() 
+recoverDrinksPrix() 
