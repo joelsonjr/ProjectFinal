@@ -18,8 +18,10 @@ def recoverDiamante(site):
     for product in products:
         try:
             title = product.find('form', class_='itemGroup box').find('div', class_='box-produtos-nome nomeProduto').get_text()
+            #print(re.findall(r'(\d+g|\d+kg|\d+\,?\d*kg|\d+ml|\d+L|\d+ L|\d+ ml)', '', title.string))
             price = product.find('form', class_='itemGroup box').find('div', class_='box-produtos-preco valor azul').find('span').get_text()
-            weight = re.findall(r'(\d+g|\d+kg|\d+\,?\d*kg|\d+ml|\d+L)', product.find('form', class_='itemGroup box').find('div', class_='box-produtos-nome nomeProduto').get_text())
+            w = re.findall(r'(\d+g|\d+kg|\d+\,?\d*kg|\d+ml|\d+L|\d+ L|\d+ ml)', product.find('form', class_='itemGroup box').find('div', class_='box-produtos-nome nomeProduto').get_text())
+            weight = re.findall(r'\d+\,\d+', w[0])
             print(title)
             print(price)
             print(weight)
