@@ -3,7 +3,7 @@ import sqlite3
 conn = sqlite3.connect('products.db')
 
 cursor = conn.cursor()
-
+'''
 # criando a tabela (schema)
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS Empresa (
@@ -27,7 +27,19 @@ CREATE TABLE IF NOT EXISTS Localizacao_Empresa (
 """)
 
 cursor.execute("""
-CREATE TABLE IF NOT EXISTS Produtos (
+CREATE TABLE IF NOT EXISTS Acougue (
+        id_produto INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+        id_empresa INTEGER NOT NULL,
+        nome TEXT NOT NULL,
+        categoria TEXT NOT NULL,
+        preco REAL NOT NULL,
+        peso REAL,
+        FOREIGN KEY(id_empresa) REFERENCES Empresa(id_empresa)
+        );
+""")
+'''
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS Bebidas (
         id_produto INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
         id_empresa INTEGER NOT NULL,
         nome TEXT NOT NULL,
@@ -38,10 +50,13 @@ CREATE TABLE IF NOT EXISTS Produtos (
         );
 """)
 
-cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (4, 'Av. Quintino Bocaiúva', 127, '24360-022', 'São Francisco', 'Niterói', '(21) 2611-7700')")
-cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (4, 'Av. Rui Barbosa', 325, '24360-440', 'São Francisco', 'Niterói', '(21) 2611-8079')")
-cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (4, 'Estrada Francisco da Cruz Nunes', 1601, '24320-330', 'Itaipu', 'Niterói', '(21) 3254-5200')")
-cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (4, 'Av. Nossa Sra. de Copacabana', 719, '22020-001', 'Copacabana', 'Rio de Janeiro', '(21) 3269-9824')")
+
+#cursor.execute("ALTER TABLE Acougue ADD especial INTEGER")
+#cursor.execute("ALTER TABLE Bebidas ADD especial INTEGER")
+#cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (4, 'Av. Quintino Bocaiúva', 127, '24360-022', 'São Francisco', 'Niterói', '(21) 2611-7700')")
+#cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (4, 'Av. Rui Barbosa', 325, '24360-440', 'São Francisco', 'Niterói', '(21) 2611-8079')")
+#cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (4, 'Estrada Francisco da Cruz Nunes', 1601, '24320-330', 'Itaipu', 'Niterói', '(21) 3254-5200')")
+#cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (4, 'Av. Nossa Sra. de Copacabana', 719, '22020-001', 'Copacabana', 'Rio de Janeiro', '(21) 3269-9824')")
 
 
 #cursor.execute("insert into Localizacao_Empresa(id_empresa, endereco, numero, cep, bairro, cidade, telefone ) values (1, 'Av. das Américas', 3665, '22361-003', 'Barra', 'Rio de Janeiro', '(21) 3325-1177')")

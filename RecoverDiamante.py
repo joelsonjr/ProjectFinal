@@ -34,7 +34,8 @@ def recoverDiamante(site):
         
 #Recover Foods Diamante
 def recoverFoodDiamente():
-    foodsSites = {"https://www.mercadodiamante.com.br/categoria/carnes-carnes-bovinas/53"}#,
+    foodsSites = {"https://www.mercadodiamante.com.br/categoria/-carnes-exoticas/55",
+                  "https://www.mercadodiamante.com.br/categoria/carnes-carnes-bovinas/53",
                   #"https://www.mercadodiamante.com.br/categoria/-aves/54",
                   #"https://www.mercadodiamante.com.br/categoria/-carnes-suinas/52",
                   #"https://www.mercadodiamante.com.br/categoria/-embutidos-de-carnes/57"}
@@ -44,8 +45,12 @@ def recoverFoodDiamente():
 
 #Recover Drinks Diamante
 def recoverDrinksDiamante():
-    drinksSites = {"https://www.mercadodiamante.com.br/categoria/bebidas-cervejas/1",
-                   "https://www.mercadodiamante.com.br/categoria/-aguas/5",
+    drinksSites = {"https://www.mercadodiamante.com.br/subcategoria/cervejas-importada/2",
+                   "https://www.mercadodiamante.com.br/subcategoria/cervejas-nacional/1",
+                   "https://www.mercadodiamante.com.br/subcategoria/aguas-premium/56",
+                   "https://www.mercadodiamante.com.br/subcategoria/aguas-com-gas/23",
+                   "https://www.mercadodiamante.com.br/subcategoria/aguas-com-gas/23/sem%20gas",
+                   "https://www.mercadodiamante.com.br/subcategoria/aguas-com-gas/23/mineral",
                    "https://www.mercadodiamante.com.br/categoria/-refrigerantes/28",
                    "https://www.mercadodiamante.com.br/categoria/-whisky-amp-destilados/7",
                    "https://www.mercadodiamante.com.br/categoria/-sucos-amp-refrescos/42/suco"}
