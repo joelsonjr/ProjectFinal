@@ -9,7 +9,7 @@ conn = sqlite3.connect('products.db')
 cursor = conn.cursor()
     
 def recoverPrix(site):
-    page = requests.get(site)
+    page = requests.get(site[0])
     if page.status_code != 200:
         return 
     soup = BeautifulSoup(page.content, 'html.parser')
@@ -23,33 +23,33 @@ def recoverPrix(site):
             print(title)
             print(price)
             print(weight)
-            #cursor.execute("""
-            #               INSERT INTO Produtos(id_empresa, nome, categoria, preco, peso)
-            #               VALUES (2,?,'comida',?,?)
-            #               """, (title, price, weight))
+            cursor.execute("""
+                           INSERT INTO Acougue(id_empresa, nome, preco, peso, categoria, especial)
+                           VALUES (2,?,?,?,?,?)
+                           """, (title, price[0], weight, site[2], site[1]))
         except AttributeError as e:
             print("ERROROROO ============================")
     
 #Recover Foods Prix
 def recoverFoodPrix():
-    foodsSites = {#"https://www.superprix.com.br/carnes-e-pescados/bovinas",
-                  #"https://www.superprix.com.br/carnes-e-pescados/aves",
-                  #"https://www.superprix.com.br/carnes-e-pescados/suinas",
-                  "https://www.superprix.com.br/carnes-e-pescados/linguicas"}
+    foodsSites = {#"https://www.superprix.com.br/carnes-e-pescados/bovinas", 0, "Carnes"),
+                  #("https://www.superprix.com.br/carnes-e-pescados/aves", 0, "Aves"),
+                  #("https://www.superprix.com.br/carnes-e-pescados/suinas", 0, "Suinas"),
+                  ("https://www.superprix.com.br/carnes-e-pescados/linguicas", 0, "Linguicas")}
 
     for foodsSite in foodsSites:
         recoverPrix(foodsSite)
 
 #Recover Drinks Prix
 def recoverDrinksPrix():
-    drinksSites = {"https://www.superprix.com.br/bebidas/cervejas/cervejas-especiais",
-                   "https://www.superprix.com.br/bebidas/cervejas/cervejas",
-                   "https://www.superprix.com.br/bebidas/vinhos",
-                   "https://www.superprix.com.br/bebidas/destilados",
-                   "https://www.superprix.com.br/bebidas/refrigerantes/refrigerantes",
-                   "https://www.superprix.com.br/bebidas/sucos-e-refrescos",
-                   "https://www.superprix.com.br/bebidas/agua",
-                   "https://www.superprix.com.br/bebidas/isotonicos-e-energeticos"}
+    drinksSites = {("https://www.superprix.com.br/bebidas/cervejas/cervejas-especiais", 1, "Cervejas"),
+                   ("https://www.superprix.com.br/bebidas/cervejas/cervejas", 0, "Cervejas"),
+                   ("https://www.superprix.com.br/bebidas/vinhos", 1, "Vinhos"),
+                   ("https://www.superprix.com.br/bebidas/destilados", 1, "Cachaças"),
+                   ("https://www.superprix.com.br/bebidas/refrigerantes/refrigerantes", 0, "Refrigerantes"),
+                   ("https://www.superprix.com.br/bebidas/sucos-e-refrescos", 1, "Sucos"),
+                   ("https://www.superprix.com.br/bebidas/agua", 1, "Aguas"),
+                   ("https://www.superprix.com.br/bebidas/isotonicos-e-energeticos", 1, "Energeticos")}
 
     for drinksSite in drinksSites:
         recoverPrix(drinksSite)
